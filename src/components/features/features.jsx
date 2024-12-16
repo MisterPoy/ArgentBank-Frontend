@@ -1,6 +1,7 @@
 import React from "react";
 import featuresList from "../../data/featuresList.json";
 import { FeatureItem } from "../featureItem/featureItem";
+import "./features.css";
 
 export function Features() {
   return (
