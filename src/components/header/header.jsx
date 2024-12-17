@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 
+
 export function Header() {
   return (
     <>
@@ -14,7 +15,7 @@ export function Header() {
         </Link>
         <div>
           <Link to="/signin" className="main-nav-item">
-            <i className="fa fa-user-circle"></i>
+            <i className="fa fa-user-circle" />
             Sign In
           </Link>
         </div>

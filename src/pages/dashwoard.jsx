@@ -1,8 +1,10 @@
 import React from "react";
+import EditUserForm from "../components/editUser/edituser";
 
-export function User() {
+export function DashBoard() {
   return (
     <main className="main bg-dark">
+      <EditUserForm />
       <div className="header">
         <h1>
           Welcome back

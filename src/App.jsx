@@ -6,7 +6,7 @@ import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
 import { SignIn } from "./pages/signIn";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { User } from "./pages/user";
+import { DashBoard } from "./pages/dashwoard";
 
 ///////// LAYOUT COMPONENT FOR HEADER, FOOTER AND MAIN CONTAINER
 const Layout = ({ children }) => {
@@ -41,10 +41,10 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/user",
+    path: "/dashboard",
     element: (
       <Layout>
-        <User />
+        <DashBoard />
       </Layout>
     ),
   },
