@@ -1,6 +1,34 @@
+.edit-user-Form_container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  margin-bottom: 4rem;
+}
+.edit-user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.User-input_form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
 input[type="text"] {
   color: black;
 }
 .edit-user-Form {
   color: white;
+}
+.edit-user-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.edit-user-buttons button {
+  width: 50%;
 }

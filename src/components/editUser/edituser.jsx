@@ -1,26 +1,42 @@
-import React from 'react';
-import "./EditUserForm.css"
+import React from "react";
+import "./EditUserForm.css";
 
 const EditUserForm = () => {
   return (
-    <div className='edit-user-Form'>
+    <div className="edit-user-Form_container">
       <h1>Edit User Info</h1>
-      <form>
-        <div>
+      <form className="edit-user-form">
+        <div className="User-input_form input-wrapper">
           <label htmlFor="userName">User Name</label>
           <input type="text" id="userName" name="userName" />
         </div>
-        <div>
+        <div className="User-input_form input-wrapper">
           <label htmlFor="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" value="John" readOnly />
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value="John"
+            readOnly
+          />
         </div>
-        <div>
+        <div className="User-input_form input-wrapper">
           <label htmlFor="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" value="Doe" readOnly />
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value="Doe"
+            readOnly
+          />
         </div>
-        <div>
-          <button type="button">Save</button>
-          <button type="button">Cancel</button>
+        <div className="edit-user-buttons">
+          <button className="edit-button" type="button">
+            Save
+          </button>
+          <button className="edit-button" type="button">
+            Cancel
+          </button>
         </div>
       </form>
     </div>

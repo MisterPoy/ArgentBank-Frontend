@@ -1,5 +1,6 @@
 import React from "react";
 import EditUserForm from "../components/editUser/edituser";
+import "./dashboard.css";
 
 export function DashBoard() {
   return (

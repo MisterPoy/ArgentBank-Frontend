@@ -21,7 +21,7 @@ export function SignInForm() {
               Sign In
             </a> */}
       {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-      <Link to="/dashboard">
+      <Link to="/dashboard">  
         <button className="sign-in-button">Sign In</button>
       </Link>
     </form>
