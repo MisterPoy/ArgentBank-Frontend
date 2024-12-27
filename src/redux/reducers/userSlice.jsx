@@ -47,7 +47,6 @@ const userSlice = createSlice({
     token: null,
     status: "idle",
     error: null,
-    user: null,
   },
   reducers: {
     login(state, action) {
@@ -87,8 +86,7 @@ const userSlice = createSlice({
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
         state.isLoggedIn = true; // marque l'utilisateur comme connecté
-        state.user = action.payload;
-        console.log(state.user);
+        console.log(state);
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.status = "failed"; // indique que la requête à échoué

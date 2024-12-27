@@ -2,10 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router";
 import { logout } from "../../redux/reducers/userSlice";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
-  const { isLoggedIn, firstName, lastName } = useSelector(
+  const { isLoggedIn, userName, lastName } = useSelector(
     (state) => state.user
   );
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export function Header() {
           <>
             <Link className="main-nav-item" to="/dashboard">
               <i className="fa fa-user-circle"></i>
-              {firstName}
+              {userName}
             </Link>
             <Link onClick={handleLogOut} className="main-nav-item" to="/">
               <i className="fa fa-sign-out"></i>
