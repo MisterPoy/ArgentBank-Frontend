@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile } from "../redux/reducers/userSlice";
 import accountList from "../data/accountsList.json";
 import { AccountItem } from "../components/accountItem/accountItem";
+import { Button } from "../components/button/button";
 
 export function DashBoard() {
   const { userName, firstName, lastName, isLoggedIn } = useSelector(
     (state) => state.user
   );
-  const token = localStorage.getItem("token");
+
   //hook pour gérer ouverture et fermeture modale
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -19,13 +20,14 @@ export function DashBoard() {
 
   //verifier la présence du token au chargement de la page
   useEffect(() => {
+    const token = localStorage.getItem("token"); // Récupérer le token
+
     if (!token) {
-      navigate("/signIn");
+      navigate("/signin"); // Redirige vers signIn si l'utilisateur n'a pas le token
     } else if (!isLoggedIn) {
-      // dispatch fetchUserprofile si le token est présent
-      dispatch(fetchUserProfile());
+      dispatch(fetchUserProfile()); // Dispatch fetchUserProfile si le token est présent
     }
-  }, [token, navigate, isLoggedIn, dispatch]);
+  }, [navigate, dispatch]);
 
   const handleEditName = () => {
     console.log("Opening edit user form");
@@ -39,10 +41,12 @@ export function DashBoard() {
   return (
     <main className="main bg-dark">
       {isOpen ? (
-        <EditUserForm handleCloseEditUserForm={handleCloseEditUserForm}
-        userName={userName}
-        firstName={firstName}
-        lastName={lastName} />
+        <EditUserForm
+          handleCloseEditUserForm={handleCloseEditUserForm}
+          userName={userName}
+          firstName={firstName}
+          lastName={lastName}
+        />
       ) : (
         <div className="welcomeUser-container">
           <h1>
@@ -50,9 +54,11 @@ export function DashBoard() {
             <br />
             {firstName} {lastName} !
           </h1>
-          <button className="edit-button" onClick={handleEditName}>
-            Edit Name
-          </button>
+          <Button
+            className="edit-button"
+            onClick={handleEditName}
+            content="Edit name"
+          />
         </div>
       )}
 

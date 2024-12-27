@@ -1,15 +1,25 @@
 import React from "react";
 import "./EditUserForm.css";
+import { Button } from "../button/button";
 
-const EditUserForm = ({ handleCloseEditUserForm, userName, firstName, lastName }) => {
+const EditUserForm = ({
+  handleCloseEditUserForm,
+  userName,
+  firstName,
+  lastName,
+}) => {
   return (
     <div className="edit-user-Form_container">
       <h1>Edit User Info</h1>
       <form className="edit-user-form">
         <div className="User-input_form input-wrapper">
           <label htmlFor="userName">User Name</label>
-          <input type="text" id="userName" name="userName"
-          defaultValue={userName} />
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            defaultValue={userName}
+          />
         </div>
         <div className="User-input_form input-wrapper">
           <label htmlFor="firstName">First Name</label>
@@ -34,16 +44,14 @@ const EditUserForm = ({ handleCloseEditUserForm, userName, firstName, lastName }
           />
         </div>
         <div className="edit-user-buttons">
-          <button className="edit-button" type="button">
-            Save
-          </button>
-          <button
+          <Button type="submit" className="edit-button" content="Save" onClick={undefined} />
+
+          <Button
             className="edit-button"
             type="button"
+            content="Cancel"
             onClick={handleCloseEditUserForm}
-          >
-            Cancel
-          </button>
+          />
         </div>
       </form>
     </div>

@@ -1,5 +1,6 @@
 import "./accountItem.css";
 import React from "react";
+import { Button } from "../button/button";
 
 export function AccountItem({ id, title, amount, amountDescription }) {
   return (
@@ -10,7 +11,12 @@ export function AccountItem({ id, title, amount, amountDescription }) {
         <p className="account-amount-description">{amountDescription}</p>
       </div>
       <div className="account-content-wrapper cta">
-        <button className="transaction-button">View transactions</button>
+        <Button
+          type="button"
+          className="transaction-button"
+          content="View transactions"
+          onClick={undefined}
+        />
       </div>
     </section>
   );

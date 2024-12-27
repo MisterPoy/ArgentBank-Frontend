@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchUserProfile } from "../../redux/reducers/userSlice";
 import { setToken } from "../../redux/reducers/userSlice";
+import { Button } from "../button/button";
 
 export function SignInForm() {
   const [email, setEmail] = useState("");
@@ -36,9 +37,9 @@ export function SignInForm() {
       localStorage.setItem("token", token);
       console.log(token);
 
-      await dispatch(setToken(token));
+      dispatch(setToken(token));
       // après la connexion réussit on récupère les données du profil avec le l'asyncThunk
-      await dispatch(fetchUserProfile());
+      dispatch(fetchUserProfile());
 
       navigate("/dashboard");
     } catch (err) {
@@ -74,9 +75,7 @@ export function SignInForm() {
         <label htmlFor="remember-me">Remember me</label>
       </div>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button type="submit" className="sign-in-button">
-        Sign In
-      </button>
+      <Button type="submit" className="sign-in-button" content="Sign in" onClick={undefined}/>
     </form>
   );
 }

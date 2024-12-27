@@ -1,20 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { logout } from "../../redux/reducers/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export function Header() {
-  const { isLoggedIn, userName, lastName } = useSelector(
-    (state) => state.user
-  );
+  const { isLoggedIn, userName, lastName } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogOut = () => {
     // Exécute l'action logout pour mettre à jour l'état dans Redux
     dispatch(logout());
-    console.log;
+    navigate("/"); // redirige vers la home page après déconnexion
   };
   /*   const location = useLocation(); // récupère l'url actuelle
 
@@ -34,21 +32,21 @@ export function Header() {
       <nav className="main-nav-item">
         {isLoggedIn ? (
           <>
-            <Link className="main-nav-item" to="/dashboard">
+            <NavLink className="main-nav-item" to="/dashboard">
               <i className="fa fa-user-circle"></i>
               {userName}
-            </Link>
-            <Link onClick={handleLogOut} className="main-nav-item" to="/">
+            </NavLink>
+            <NavLink onClick={handleLogOut} className="main-nav-item" to="/">
               <i className="fa fa-sign-out"></i>
               Sign Out
-            </Link>
+            </NavLink>
           </>
         ) : (
           <>
-            <Link to="/signin" className="main-nav-item">
+            <NavLink to="/signin" className="main-nav-item">
               <i className="fa fa-user-circle" />
               Sign In
-            </Link>
+            </NavLink>
           </>
         )}
       </nav>

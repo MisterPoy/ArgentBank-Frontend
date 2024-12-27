@@ -65,6 +65,7 @@ const userSlice = createSlice({
       state.lastName = null;
       state.status = "idle";
       state.error = null;
+      state.token = null;
       // supprime le token du local storage
 
       localStorage.removeItem("token");
