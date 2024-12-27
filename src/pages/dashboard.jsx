@@ -8,7 +8,7 @@ import accountList from "../data/accountsList.json";
 import { AccountItem } from "../components/accountItem/accountItem";
 
 export function DashBoard() {
-  const { username, firstName, lastName, isLoggedIn } = useSelector(
+  const { userName, firstName, lastName, isLoggedIn } = useSelector(
     (state) => state.user
   );
   const token = localStorage.getItem("token");
@@ -39,7 +39,10 @@ export function DashBoard() {
   return (
     <main className="main bg-dark">
       {isOpen ? (
-        <EditUserForm handleCloseEditUserForm={handleCloseEditUserForm} />
+        <EditUserForm handleCloseEditUserForm={handleCloseEditUserForm}
+        userName={userName}
+        firstName={firstName}
+        lastName={lastName} />
       ) : (
         <div className="welcomeUser-container">
           <h1>

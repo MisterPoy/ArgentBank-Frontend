@@ -1,14 +1,15 @@
 import React from "react";
 import "./EditUserForm.css";
 
-const EditUserForm = ({ handleCloseEditUserForm }) => {
+const EditUserForm = ({ handleCloseEditUserForm, userName, firstName, lastName }) => {
   return (
     <div className="edit-user-Form_container">
       <h1>Edit User Info</h1>
       <form className="edit-user-form">
         <div className="User-input_form input-wrapper">
           <label htmlFor="userName">User Name</label>
-          <input type="text" id="userName" name="userName" />
+          <input type="text" id="userName" name="userName"
+          defaultValue={userName} />
         </div>
         <div className="User-input_form input-wrapper">
           <label htmlFor="firstName">First Name</label>
@@ -16,7 +17,8 @@ const EditUserForm = ({ handleCloseEditUserForm }) => {
             type="text"
             id="firstName"
             name="firstName"
-            value="John"
+            value={firstName}
+            style={{ color: "gray" }}
             readOnly
           />
         </div>
@@ -26,7 +28,8 @@ const EditUserForm = ({ handleCloseEditUserForm }) => {
             type="text"
             id="lastName"
             name="lastName"
-            value="Doe"
+            value={lastName}
+            style={{ color: "gray" }}
             readOnly
           />
         </div>
@@ -34,7 +37,11 @@ const EditUserForm = ({ handleCloseEditUserForm }) => {
           <button className="edit-button" type="button">
             Save
           </button>
-          <button className="edit-button" type="button" onClick={handleCloseEditUserForm}>
+          <button
+            className="edit-button"
+            type="button"
+            onClick={handleCloseEditUserForm}
+          >
             Cancel
           </button>
         </div>
