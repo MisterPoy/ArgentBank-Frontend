@@ -1,19 +1,54 @@
-import React from "react";
-import EditUserForm from "../components/editUser/edituser";
+import React, { useEffect, useState } from "react";
+import EditUserForm from "../components/editUserForm/editUserForm";
 import "./dashboard.css";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserProfile } from "../redux/reducers/userSlice";
 
 export function DashBoard() {
+  const { username, firstName, lastName, isLoggedIn } = useSelector(
+    (state) => state.user
+  );
+  const token = localStorage.getItem("token");
+  //hook pour gérer ouverture et fermeture modale
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  //verifier la présence du token au chargement de la page
+  useEffect(() => {
+    if (!token) {
+      navigate("/signIn");
+    } else if (!isLoggedIn) {
+      // dispatch fetchUserprofile si le token est présent
+      dispatch(fetchUserProfile());
+    }
+  }, [token, navigate, isLoggedIn, dispatch]);
+
+  const handleEditName = () => {
+    setIsOpen(true);
+  };
+  const handleCloseEditUserForm = () => {
+    setIsOpen(false);
+  };
+
   return (
     <main className="main bg-dark">
-      <EditUserForm />
-      <div className="header">
-        <h1>
-          Welcome back
-          <br />
-          Tony Jarvis!
-        </h1>
-        <button className="edit-button">Edit Name</button>
-      </div>
+      {isOpen ? (
+        <EditUserForm handleCloseEditUserForm={handleCloseEditUserForm} />
+      ) : (
+        <div className="welcomeUser-container">
+          <h1>
+            Welcome back
+            <br />
+            {firstName} {lastName} !
+          </h1>
+          <button className="edit-button" onClick={handleEditName}>
+            Edit Name
+          </button>
+        </div>
+      )}
+
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
         <div className="account-content-wrapper">
