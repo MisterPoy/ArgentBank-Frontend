@@ -4,7 +4,7 @@ import "./dashboard.css";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile } from "../redux/reducers/userSlice";
-import accountList from "../data/accountsList.json"
+import accountList from "../data/accountsList.json";
 import { AccountItem } from "../components/accountItem/accountItem";
 
 export function DashBoard() {
@@ -28,9 +28,11 @@ export function DashBoard() {
   }, [token, navigate, isLoggedIn, dispatch]);
 
   const handleEditName = () => {
+    console.log("Opening edit user form");
     setIsOpen(true);
   };
   const handleCloseEditUserForm = () => {
+    console.log("Closing edit user form");
     setIsOpen(false);
   };
 
@@ -53,14 +55,14 @@ export function DashBoard() {
 
       <h2 className="sr-only">Accounts</h2>
 
-      {accountList.map((account)=>(
+      {accountList.map((account) => (
         // map sur accountList pour créer les composant account dynamiquement
         <AccountItem
-        key={account.id}
-        title={account.title}
-        amount = {account.amount}
-        amountDescription={account.amountDescription}
-         />
+          key={account.id}
+          title={account.title}
+          amount={account.amount}
+          amountDescription={account.amountDescription}
+        />
       ))}
     </main>
   );

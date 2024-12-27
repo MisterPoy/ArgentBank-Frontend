@@ -1,7 +1,7 @@
 import React from "react";
 import "./EditUserForm.css";
 
-const EditUserForm = () => {
+const EditUserForm = ({ handleCloseEditUserForm }) => {
   return (
     <div className="edit-user-Form_container">
       <h1>Edit User Info</h1>
@@ -34,7 +34,7 @@ const EditUserForm = () => {
           <button className="edit-button" type="button">
             Save
           </button>
-          <button className="edit-button" type="button">
+          <button className="edit-button" type="button" onClick={handleCloseEditUserForm}>
             Cancel
           </button>
         </div>
