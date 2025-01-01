@@ -52,7 +52,7 @@ const userSlice = createSlice({
     login(state, action) {
       state.isLoggedIn = true;
       state.userName = action.payload.userName;
-      state.firstName = action.payload.firstName; // Corrigé pour éviter les fautes
+      state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
       const token = action.payload.token;
       localStorage.getItem("token");
