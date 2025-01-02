@@ -14,6 +14,7 @@ export function Features() {
             title={item.title}
             content={item.content}
             src={item.src}
+            description={item.description}
           />
         ))}
       </>
