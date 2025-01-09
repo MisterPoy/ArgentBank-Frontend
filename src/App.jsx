@@ -6,6 +6,7 @@ import { Footer } from "./components/footer/footer";
 import { SignIn } from "./pages/signIn";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { DashBoard } from "./pages/dashboard";
+import { ErrorPage } from "./pages/errorPage";
 
 ///////// LAYOUT COMPONENT FOR HEADER, FOOTER AND MAIN CONTAINER
 const Layout = ({ children }) => {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
       </Layout>
     ),
     // IF A ERROR OCCURS, RENDER THE ERRORPAGE COMPONENT
+    errorElement: (
+      <Layout>
+        <ErrorPage />
+      </Layout>
+    ),
   },
   {
     // ROUTE FOR ABOUT PAGE
@@ -44,6 +50,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <DashBoard />
+      </Layout>
+    ),
+  },
+  {
+    path: "/error", // ROUTE FOR THE ERROR PAGE
+    element: (
+      <Layout>
+        <ErrorPage />
       </Layout>
     ),
   },

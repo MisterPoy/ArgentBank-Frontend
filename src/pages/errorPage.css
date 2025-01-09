@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7em;
+  min-height: 100%;
+}
+
+.error-title {
+  color: white;
+}
