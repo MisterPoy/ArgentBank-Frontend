@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EditUserForm.css";
 import { Button } from "../button/button";
-import { fetchUserProfile } from "../../redux/reducers/userSlice";
+import { fetchUserProfile } from "../../redux/userSlice";
 import { useDispatch } from "react-redux";
 
 const EditUserForm = ({

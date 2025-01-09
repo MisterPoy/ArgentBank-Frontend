@@ -3,7 +3,7 @@ import EditUserForm from "../components/editUserForm/editUserForm";
 import "./dashboard.css";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile } from "../redux/reducers/userSlice";
+import { fetchUserProfile } from "../redux/userSlice";
 import accountList from "../data/accountsList.json";
 import { AccountItem } from "../components/accountItem/accountItem";
 import { Button } from "../components/button/button";

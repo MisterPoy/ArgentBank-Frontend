@@ -3,7 +3,7 @@ import { Hero } from "../components/hero/hero";
 import { Features } from "../components/features/features";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile } from "../redux/reducers/userSlice";
+import { fetchUserProfile } from "../redux/userSlice";
 
 export function Home() {
   const { isLoggedIn } = useSelector((state) => state.user);

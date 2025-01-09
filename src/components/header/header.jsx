@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { logout } from "../../redux/reducers/userSlice";
+import { logout } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export function Header() {

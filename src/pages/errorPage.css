@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.error-Container {
   gap: 7em;
-  min-height: 100%;
 }
 
 .error-title {

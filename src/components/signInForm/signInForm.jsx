@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchUserProfile } from "../../redux/reducers/userSlice";
-import { setToken } from "../../redux/reducers/userSlice";
+import { fetchUserProfile } from "../../redux/userSlice";
+import { setToken } from "../../redux/userSlice";
 import { Button } from "../button/button";
 
 export function SignInForm() {
@@ -75,7 +75,12 @@ export function SignInForm() {
         <label htmlFor="remember-me">Remember me</label>
       </div>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <Button type="submit" className="sign-in-button" content="Sign in" onClick={undefined}/>
+      <Button
+        type="submit"
+        className="sign-in-button"
+        content="Sign in"
+        onClick={undefined}
+      />
     </form>
   );
 }
