@@ -40,7 +40,12 @@ export function Header() {
       <nav className="main-nav-item">
         {isLoggedIn ? (
           <>
-            <NavLink className="main-nav-item" to="/dashboard">
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive ? "main-nav-item active-link" : "main-nav-item"
+              }
+            >
               <i className="fa fa-user-circle"></i>
               {userName}
             </NavLink>
