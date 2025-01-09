@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { logout } from "../../redux/userSlice";
@@ -8,15 +8,23 @@ export function Header() {
   const { isLoggedIn, userName, lastName } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // logique pour vérifier la présence du token en changeant de page
+
+  useEffect(() => {
+    // vérifie si le token est absent mais que isLoggedin est true
+    const token = localStorage.getItem("token");
+    if (!token && isLoggedIn) {
+      dispatch(logout());
+    }
+  }, [location, dispatch, isLoggedIn]);
 
   const handleLogOut = () => {
     // Exécute l'action logout pour mettre à jour l'état dans Redux
     dispatch(logout());
     navigate("/"); // redirige vers la home page après déconnexion
   };
-  /*   const location = useLocation(); // récupère l'url actuelle
-
-  const isSignInPage = location.pathname === "/dashboard"; // vérifie si on est sur /signin */
 
   return (
     <header className="main-nav">
