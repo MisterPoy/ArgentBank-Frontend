@@ -2,6 +2,7 @@ import "./accountItem.css";
 import React from "react";
 import { Button } from "../button/button";
 
+// AccountItem component - Displays individual account information
 export function AccountItem({ id, title, amount, amountDescription }) {
   return (
     <section className="account" key={id}>

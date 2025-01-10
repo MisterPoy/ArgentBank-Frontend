@@ -1,5 +1,6 @@
 import React from "react";
 
+// HeroContent component - Displays promotional content on the homepage
 export function HeroContent() {
   return (
     <>

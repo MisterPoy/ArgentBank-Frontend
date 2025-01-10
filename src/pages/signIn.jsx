@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import "./signin.css";
-import { SingInContent } from "../components/singInContent/signInContent";
+import { SignInContent } from "../components/SignInContent/signInContent";
 import { useNavigate } from "react-router";
 
+
+// SignIn page for user authentification
 export function SignIn() {
   const navigate = useNavigate();
 
+  // Check for existing token and redirect to dashboard if found
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -14,11 +17,9 @@ export function SignIn() {
     } 
   }, [navigate]);
 
-  return (
-    <>
+  return (    
       <main className="main bg-dark">
-        <SingInContent />
-      </main>
-    </>
+        <SignInContent />
+      </main>   
   );
 }

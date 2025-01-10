@@ -3,27 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { logout } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import "./header.css"
 
+// Header component - Main navigation and authentification status
 export function Header() {
+  // get user data from Redux store
   const { isLoggedIn, userName, lastName } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // logique pour vérifier la présence du token en changeant de page
-
+  // Check for token when changing pages and update if if needed
   useEffect(() => {
-    // vérifie si le token est absent mais que isLoggedin est true
+    // Check if token is absent but isLoggedIn is true 
     const token = localStorage.getItem("token");
     if (!token && isLoggedIn) {
       dispatch(logout());
     }
   }, [location, dispatch, isLoggedIn]);
 
+  // handle user logout
   const handleLogOut = () => {
-    // Exécute l'action logout pour mettre à jour l'état dans Redux
     dispatch(logout());
-    navigate("/"); // redirige vers la home page après déconnexion
+    navigate("/"); // Redirect to home page after logout
   };
 
   return (
@@ -36,7 +38,7 @@ export function Header() {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
-
+      {/* Navigation menu */}
       <nav className="main-nav-item">
         {isLoggedIn ? (
           <>

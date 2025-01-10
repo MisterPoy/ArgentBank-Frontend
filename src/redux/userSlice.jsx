@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+// Async thunk for fetching user profile
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchUserProfile", // nom de l'action
   async (_, { rejectWithValue }) => {
     try {
-      // effectuer une requête vers l'API pour récupéré les données du profil de l'utilisateur
+      // Fetch user profile data from API
       const token = localStorage.getItem("token");
+      // Create variable for API call
+      const USER_PROFILE_API_URL = "http://localhost:3001/api/v1/user/profile";
       console.log(token);
-      const response = await fetch(
-        "http://localhost:3001/api/v1/user/profile",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(USER_PROFILE_API_URL, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      // veirife si la réponse est invalide
+      // Check if the response is invalid
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
@@ -26,24 +26,25 @@ export const fetchUserProfile = createAsyncThunk(
         );
       }
 
-      // Analyse la réponse et renvoie les données
+      // Parse and return the response data
       const data = await response.json();
 
-      return data.body; // Retourne uniquement les données pertinente
+      return data.body; // Retourn only relevant data
     } catch (error) {
-      //Rejette la promesse avec un message personnalisé
+      //Reject the promise with a custom error message
       return rejectWithValue(error.message);
     }
   }
 );
 
+// Create the userSlice
 const userSlice = createSlice({
   name: "user",
   initialState: {
     isLoggedIn: false,
-    userName: null, // nom d'utilisateur
-    firstName: null, // prénom
-    lastName: null, // nom de famille
+    userName: null,
+    firstName: null,
+    lastName: null,
     token: null,
     status: "idle",
     error: null,
@@ -54,8 +55,6 @@ const userSlice = createSlice({
       state.userName = action.payload.userName;
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
-      const token = action.payload.token;
-      localStorage.getItem("token");
       state.token = action.payload.token;
     },
     logout(state) {
@@ -66,8 +65,8 @@ const userSlice = createSlice({
       state.status = "idle";
       state.error = null;
       state.token = null;
-      // supprime le token du local storage
 
+      // Remove token from local storage
       localStorage.removeItem("token");
     },
     setToken(state, action) {
@@ -78,23 +77,24 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserProfile.pending, (state) => {
-        state.status = "loading"; // indique que la raquête est en cours
-        state.error = null; // Réinitialise l'erreur
+        state.status = "loading"; // Indicate that the request is in progress
+        state.error = null; // Reset error
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.status = "succeeded"; // indique que la reête à réussit
+        state.status = "succeeded"; // Indicate that the request succeeded
         state.userName = action.payload.userName;
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
-        state.isLoggedIn = true; // marque l'utilisateur comme connecté
+        state.isLoggedIn = true; // Change user state at logged in
         console.log(state);
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
-        state.status = "failed"; // indique que la requête à échoué
-        state.error = action.payload; // enregistre le message d'erreur.
+        state.status = "failed"; // Request failed
+        state.error = action.payload; // Store error message
       });
   },
 });
 
-export const { login, logout, setToken } = userSlice.actions; // on exporte les actions du slice
+// Export slice actions
+export const { login, logout, setToken } = userSlice.actions;
 export default userSlice.reducer;

@@ -8,33 +8,36 @@ import accountList from "../data/accountsList.json";
 import { AccountItem } from "../components/accountItem/accountItem";
 import { Button } from "../components/button/button";
 
+// Dashboard component - main user dashwoard after login
 export function DashBoard() {
+  // get user data from Redux store
   const { userName, firstName, lastName, isLoggedIn } = useSelector(
     (state) => state.user
   );
 
-  //hook pour gérer ouverture et fermeture modale
+  // State to manage modal open/close
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  //verifier la présence du token au chargement de la page
+  // Check for token presence and fetch user profile if needed
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Récupérer le token
+    const token = localStorage.getItem("token");
 
     if (!token) {
-      navigate("/signin"); // Redirige vers signIn si l'utilisateur n'a pas le token
+      navigate("/signin"); // Redirect to signin page if no token
     } else if (!isLoggedIn) {
-      dispatch(fetchUserProfile()); // Dispatch fetchUserProfile si le token est présent
+      dispatch(fetchUserProfile()); // Fetch user profile if token exists but not logged in
     }
-  }, [navigate, dispatch]);
+  }, [navigate, dispatch, isLoggedIn]);
 
-  const handleEditName = () => {
-    console.log("Opening edit user form");
+  // handler to open edit user form
+  const handleEditName = () => {    
     setIsOpen(true);
   };
-  const handleCloseEditUserForm = () => {
-    console.log("Closing edit user form");
+
+  // handler to close user form
+  const handleCloseEditUserForm = () => {   
     setIsOpen(false);
   };
 
@@ -65,7 +68,7 @@ export function DashBoard() {
       <h2 className="sr-only">Accounts</h2>
 
       {accountList.map((account) => (
-        // map sur accountList pour créer les composant account dynamiquement
+        // Dynamically create AccounItem components from accountlist
         <AccountItem
           key={account.id}
           title={account.title}

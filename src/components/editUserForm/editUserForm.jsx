@@ -4,20 +4,23 @@ import { Button } from "../button/button";
 import { fetchUserProfile } from "../../redux/userSlice";
 import { useDispatch } from "react-redux";
 
+// EdituserForm component - Allow users to edit their profile
 const EditUserForm = ({
   handleCloseEditUserForm,
   userName,
   firstName,
   lastName,
 }) => {
-  // état local pour le nouveau userName
+
+  // Local state for new username and potential errors
   const [newUserName, setNewUserName] = useState(userName);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
+  // handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+// API call to update username
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -34,9 +37,10 @@ const EditUserForm = ({
       if (!response.ok) {
         throw new Error("Failed to update username");
       }
-      // mettre à jour l'état su profil
+      // Update global state with user profile
       dispatch(fetchUserProfile());
 
+      // Close the edit form
       handleCloseEditUserForm();
     } catch (err) {
       setError("Failed to update username, please try again");

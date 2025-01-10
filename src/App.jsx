@@ -1,14 +1,15 @@
 import React from "react";
 import "./App.css";
-import { Home } from "./pages/home";
+import { createBrowserRouter, RouterProvider } from "react-router";
+
 import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
+import { Home } from "./pages/home";
 import { SignIn } from "./pages/signIn";
-import { createBrowserRouter, RouterProvider } from "react-router";
 import { DashBoard } from "./pages/dashboard";
 import { ErrorPage } from "./pages/errorPage";
 
-///////// LAYOUT COMPONENT FOR HEADER, FOOTER AND MAIN CONTAINER
+///////// Layout element for wrapping pages with common elements (header and footer)
 const Layout = ({ children }) => {
   return (
     <>
@@ -19,17 +20,17 @@ const Layout = ({ children }) => {
   );
 };
 
-////////// Create routes with Layout elements for each routes
+////////// Create routes with Layout elements for each route
 
 const router = createBrowserRouter([
   {
-    path: "/", // DEFINE THE ROUTE FOR THE HOME PAGE
+    path: "/", // Home page route
     element: (
       <Layout>
         <Home />
       </Layout>
     ),
-    // IF A ERROR OCCURS, RENDER THE ERRORPAGE COMPONENT
+    // render ErrorPage components if an error occurs
     errorElement: (
       <Layout>
         <ErrorPage />
@@ -37,8 +38,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    // ROUTE FOR ABOUT PAGE
-    path: "/signin",
+    path: "/signin", // Sign-in page route
     element: (
       <Layout>
         <SignIn />
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/dashboard",
+    path: "/dashboard", // Dashboard page route
     element: (
       <Layout>
         <DashBoard />
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/error", // ROUTE FOR THE ERROR PAGE
+    path: "/error", // Route for the ErrorPage
     element: (
       <Layout>
         <ErrorPage />
