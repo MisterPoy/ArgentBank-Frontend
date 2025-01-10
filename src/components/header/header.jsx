@@ -22,7 +22,7 @@ export function Header() {
     }
   }, [location, dispatch, isLoggedIn]);
 
-  // handle user logout
+  // Handle user logout
   const handleLogOut = () => {
     dispatch(logout());
     navigate("/"); // Redirect to home page after logout

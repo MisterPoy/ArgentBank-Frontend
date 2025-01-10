@@ -9,7 +9,6 @@ export const fetchUserProfile = createAsyncThunk(
       const token = localStorage.getItem("token");
       // Create variable for API call
       const USER_PROFILE_API_URL = "http://localhost:3001/api/v1/user/profile";
-      console.log(token);
       const response = await fetch(USER_PROFILE_API_URL, {
         method: "GET",
         headers: {
@@ -86,7 +85,6 @@ const userSlice = createSlice({
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
         state.isLoggedIn = true; // Change user state at logged in
-        console.log(state);
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.status = "failed"; // Request failed
