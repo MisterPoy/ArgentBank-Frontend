@@ -11,7 +11,7 @@ import { Button } from "../components/button/button";
 // Dashboard component - main user dashwoard after login
 export function DashBoard() {
   // get user data from Redux store
-  const { userName, firstName, lastName, isLoggedIn } = useSelector(
+  const { userName, firstName, lastName, isLoggedIn, status } = useSelector(
     (state) => state.user
   );
 
@@ -31,13 +31,19 @@ export function DashBoard() {
     }
   }, [navigate, dispatch, isLoggedIn]);
 
+  useEffect(() => {
+    if (status === "failed") {
+      navigate("/signin");
+    }
+  }, [status, navigate]);
+
   // handler to open edit user form
-  const handleEditName = () => {    
+  const handleEditName = () => {
     setIsOpen(true);
   };
 
   // handler to close user form
-  const handleCloseEditUserForm = () => {   
+  const handleCloseEditUserForm = () => {
     setIsOpen(false);
   };
 

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Async thunk for fetching user profile
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchUserProfile", // nom de l'action
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       // Fetch user profile data from API
       const token = localStorage.getItem("token");
@@ -16,9 +16,14 @@ export const fetchUserProfile = createAsyncThunk(
           Authorization: `Bearer ${token}`,
         },
       });
-
+      
       // Check if the response is invalid
       if (!response.ok) {
+        if (response.status === 401) {
+          dispatch(logout());
+          localStorage.removeItem("token");
+          return rejectWithValue("Session expirée")
+        }
         const errorData = await response.json();
         throw new Error(
           errorData.message || "Erreur lors de la récupération du profil"
