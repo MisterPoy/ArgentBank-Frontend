@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
-
 import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
 import { Home } from "./pages/home";

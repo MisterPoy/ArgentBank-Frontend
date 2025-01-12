@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { logout } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
-import "./header.css"
+import "./header.css";
 
 // Header component - Main navigation and authentification status
 export function Header() {
@@ -15,7 +15,7 @@ export function Header() {
 
   // Check for token when changing pages and update if if needed
   useEffect(() => {
-    // Check if token is absent but isLoggedIn is true 
+    // Check if token is absent but isLoggedIn is true
     const token = localStorage.getItem("token");
     if (!token && isLoggedIn) {
       dispatch(logout());

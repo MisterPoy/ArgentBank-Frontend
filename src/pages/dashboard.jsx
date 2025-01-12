@@ -29,13 +29,13 @@ export function DashBoard() {
     } else if (!isLoggedIn) {
       dispatch(fetchUserProfile()); // Fetch user profile if token exists but not logged in
     }
-  }, [navigate, dispatch, isLoggedIn]);
+  }, [navigate, dispatch]);
 
   useEffect(() => {
     if (status === "failed") {
       navigate("/signin");
     }
-  }, [status, navigate]);
+  }, [status]);
 
   // handler to open edit user form
   const handleEditName = () => {
